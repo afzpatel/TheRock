@@ -55,7 +55,7 @@ jobs:
           set -euo pipefail
 
           # Get the commit SHAs that TheRock project is pinned to for submodules
-          cd "${{ github.workspace }}/.."
+          cd "${{ github.workspace }}"
 
           rocm_systems_commit=$(git ls-tree HEAD rocm-systems | awk '{print $3}')
           rocm_libraries_commit=$(git ls-tree HEAD rocm-libraries | awk '{print $3}')
