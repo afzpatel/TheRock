@@ -34,10 +34,10 @@ jobs:
       IMAGE_NAME: ROCm/spack_ubuntu24_04
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@8ccefebd84d7e54c90cc7c0348d0ed77f8cf4e72 # v6.0.0
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
@@ -171,7 +171,7 @@ jobs:
 
       - name: Upload Metadata Artifact
         if: steps.check_updates.outputs.changes_detected == 'true'
-        uses: actions/upload-artifact@8f3b97da7c0d729efa9c1d4e0fae2fe3b3e0bf32 # v6.0.0
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: rocm-submodule-metadata-${{ github.run_id }}
           path: artifacts/sync-metadata.json
@@ -189,7 +189,7 @@ jobs:
 
       - name: Log in to Container Registry
         if: steps.build_check.outputs.should_build == 'true'
-        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -212,7 +212,7 @@ jobs:
       - name: Extract Metadata for Docker
         if: steps.build_check.outputs.should_build == 'true'
         id: meta
-        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
+        uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
@@ -224,7 +224,7 @@ jobs:
 
       - name: Build and Push Docker Image
         if: steps.build_check.outputs.should_build == 'true'
-        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
+        uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7.0.0
         with:
           context: dockerfiles/
           file: dockerfiles/spack_ubuntu24_04.Dockerfile
