@@ -51,7 +51,7 @@ RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
 
 # Add spack-packages as a repository
 RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
-    spack repo add /home/spack/spack-packages || true
+    spack repo set --destination /home/spack/spack-packages builtin || true
 
 # Create and build Spack environment from spack_rocm_develop.yaml
 RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
