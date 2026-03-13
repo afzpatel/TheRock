@@ -43,7 +43,7 @@ ENV PATH="${SPACK_ROOT}/bin:${PATH}"
 RUN git clone --depth 1 https://github.com/spack/spack.git ${SPACK_ROOT}
 
 # Clone Spack packages repository (custom package repository)
-RUN git clone --depth 1 https://github.com/spack/spack-packages.git /home/spack/spack-packages
+RUN git clone --depth 1 -b rocm-spack-ci-changes https://github.com/rocm/rocm-spack-packages.git /home/spack/spack-packages
 
 # Initialize Spack
 RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
@@ -52,6 +52,13 @@ RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
 # Add spack-packages as a repository
 RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
     spack repo add /home/spack/spack-packages || true
+
+# Create and build Spack environment from spack_rocm_develop.yaml
+RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
+    spack env create rocm-env /home/spack/spack-packages/spack_rocm_develop.yaml && \
+    spack env activate rocm-env && \
+    spack concretize && \
+    spack install
 
 # Create directory for ROCm submodule metadata
 RUN mkdir -p /home/spack/rocm-metadata
