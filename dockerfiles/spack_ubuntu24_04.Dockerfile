@@ -57,6 +57,7 @@ RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
 RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
     spack env create rocm-env /home/spack/spack-packages/spack_rocm_develop.yaml && \
     spack env activate rocm-env && \
+    spack clean -m && \
     spack concretize && \
     spack install
 
