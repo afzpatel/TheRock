@@ -22,7 +22,7 @@ jobs:
   build:
     name: Build Spack Image
     runs-on: ubuntu-22.04
-    timeout-minutes: 210
+    timeout-minutes: 1000
     env:
       REGISTRY: ghcr.io
       IMAGE_NAME: rocm/spack_ubuntu24_04
