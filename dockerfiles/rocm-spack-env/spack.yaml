@@ -82,7 +82,7 @@ spack:
         - rocminfo
         - rocmlir
         - rocprim
-        - rocprofiler-compute
+        # - rocprofiler-compute
         - rocprofiler-dev
         - rocprofiler-register
         - rocprofiler-sdk
