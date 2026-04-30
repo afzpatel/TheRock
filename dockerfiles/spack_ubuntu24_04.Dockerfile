@@ -54,7 +54,10 @@ RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
     spack env activate ${SPACK_ENV_NAME} && \
     spack concretize -f && \
     spack clean -m && \
-    spack install --fail-fast --reuse --use-cache --use-buildcache
+    spack mirror add E4S https://cache.e4s.io && \
+    spack mirror add spack-public https://binaries.spack.io/develop && \
+    spack buildcache keys --install --trust && \
+    spack install --fail-fast --reuse --use-cache
 
 # Activate the environment for interactive sessions
 RUN echo ". ${SPACK_ROOT}/share/spack/setup-env.sh" >> /home/spack/.bashrc && \
