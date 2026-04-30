@@ -55,7 +55,6 @@ RUN . ${SPACK_ROOT}/share/spack/setup-env.sh && \
     spack concretize -f && \
     spack clean -m && \
     spack mirror add E4S https://cache.e4s.io && \
-    spack mirror add spack-public https://binaries.spack.io/develop && \
     spack buildcache keys --install --trust && \
     spack install --fail-fast --reuse --use-cache
 
