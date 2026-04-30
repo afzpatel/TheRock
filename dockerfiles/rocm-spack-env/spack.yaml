@@ -33,7 +33,7 @@ spack:
 
   mirrors:
     spack-public:
-      url: https://binaries.spack.io/releases/latest
+      url: https://binaries.spack.io/develop
       signed: false
     spack-source:
       url: https://mirror.spack.io/
